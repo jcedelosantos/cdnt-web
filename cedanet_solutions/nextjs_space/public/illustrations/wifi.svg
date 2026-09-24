@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustración de punto de acceso WiFi emitiendo señal">
+<title>Ilustración de punto de acceso WiFi emitiendo señal</title>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d2137"/><stop offset="1" stop-color="#0a1628"/></linearGradient>
+<radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#0097A7" stop-opacity=".45"/><stop offset="1" stop-color="#0097A7" stop-opacity="0"/></radialGradient>
+<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#4DD0E1" fill-opacity=".18"/></pattern>
+<linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16334d"/><stop offset="1" stop-color="#0f2638"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="url(#bg)"/>
+<rect width="800" height="500" fill="url(#dots)"/>
+<ellipse cx="400" cy="250" rx="300" ry="210" fill="url(#glow)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<ellipse cx="400" cy="330" rx="120" ry="30" fill="url(#panel)" stroke="#4DD0E1" stroke-width="3"/><path d="M280 330 L280 345 C280 362 520 362 520 345 L520 330" stroke="#4DD0E1" stroke-width="3"/><circle cx="400" cy="330" r="6" fill="#4DD0E1" stroke="none"/><path d="M340 259.0 A75.0 75.0 0 0 1 460 259.0" stroke="#4DD0E1" stroke-width="7" stroke-opacity="1.0"/><path d="M290 241.5 A137.5 137.5 0 0 1 510 241.5" stroke="#4DD0E1" stroke-width="6" stroke-opacity="0.75"/><path d="M240 224.0 A200.0 200.0 0 0 1 560 224.0" stroke="#4DD0E1" stroke-width="5" stroke-opacity="0.5"/><rect x="194" y="159" width="32" height="22" rx="4" fill="url(#panel)" stroke="#4DD0E1" stroke-width="2" stroke-opacity=".6"/><rect x="574" y="159" width="32" height="22" rx="4" fill="url(#panel)" stroke="#4DD0E1" stroke-width="2" stroke-opacity=".6"/><rect x="234" y="379" width="32" height="22" rx="4" fill="url(#panel)" stroke="#4DD0E1" stroke-width="2" stroke-opacity=".6"/><rect x="544" y="384" width="32" height="22" rx="4" fill="url(#panel)" stroke="#4DD0E1" stroke-width="2" stroke-opacity=".6"/><circle cx="400" cy="272" r="8" fill="#E6FBFF" stroke="none"/>
+</g>
+</svg>

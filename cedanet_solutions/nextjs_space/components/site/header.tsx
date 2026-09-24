@@ -10,7 +10,7 @@ const navLinks = [
   { label: 'Servicios', href: '#servicios' },
   { label: 'Nosotros', href: '#nosotros' },
   { label: 'Proyectos', href: '#proyectos' },
-  { label: 'Soporte', href: '#proceso' },
+  { label: 'Proceso', href: '#proceso' },
   { label: 'Contacto', href: '#contacto' },
 ]
 
@@ -20,104 +20,109 @@ export function Header() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleNavClick = (href: string) => {
-    setMobileOpen(false)
-    const el = document.querySelector(href)
-    el?.scrollIntoView?.({ behavior: 'smooth' })
-  }
+  const solid = scrolled || mobileOpen
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-md'
-          : 'bg-transparent'
+        solid ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-transparent'
       }`}
     >
+      <a
+        href="#contenido"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-gray-900 focus:rounded-lg focus:shadow"
+      >
+        Saltar al contenido
+      </a>
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a href="#inicio" className="flex-shrink-0">
-            <div className="relative w-[160px] h-[50px] md:w-[180px] md:h-[56px]">
+          <a href="#inicio" className="flex-shrink-0" aria-label="Cedanet Solutions, ir al inicio">
+            <div className="relative w-[150px] h-[46px] md:w-[180px] md:h-[56px]">
               <Image
                 src="/assets/logo.png"
-                alt="Cedanet Solutions - Logo"
+                alt="Cedanet Solutions"
                 fill
-                className="object-contain"
+                sizes="180px"
+                className={`object-contain transition-[filter] duration-300 ${solid ? '' : 'brightness-0 invert'}`}
                 priority
               />
             </div>
           </a>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {navLinks?.map?.((link: any) => (
-              <button
-                key={link?.href}
-                onClick={() => handleNavClick(link?.href)}
+          <nav className="hidden lg:flex items-center gap-1" aria-label="Principal">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
                 className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                  scrolled
-                    ? 'text-gray-700 hover:text-[#0097A7] hover:bg-[#0097A7]/5'
+                  solid
+                    ? 'text-gray-700 hover:text-brand-dark hover:bg-brand/5'
                     : 'text-white/90 hover:text-white hover:bg-white/10'
                 }`}
               >
-                {link?.label}
-              </button>
-            )) ?? []}
-            <button
-              onClick={() => handleNavClick('#contacto')}
-              className="ml-3 px-5 py-2.5 bg-[#0097A7] text-white text-sm font-semibold rounded-lg hover:bg-[#00838F] transition-colors shadow-md hover:shadow-lg"
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#contacto"
+              className="ml-3 px-5 py-2.5 bg-brand text-white text-sm font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-md hover:shadow-lg"
             >
               Solicitar cotización
-            </button>
+            </a>
           </nav>
 
-          {/* Mobile hamburger */}
           <button
-            onClick={() => setMobileOpen(!mobileOpen)}
+            type="button"
+            onClick={() => setMobileOpen((open) => !open)}
             className="lg:hidden p-2 rounded-lg"
-            aria-label="Abrir menú"
+            aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={mobileOpen}
+            aria-controls="menu-movil"
           >
             {mobileOpen ? (
-              <X className={`w-6 h-6 ${scrolled ? 'text-gray-800' : 'text-white'}`} />
+              <X className="w-6 h-6 text-gray-800" />
             ) : (
-              <Menu className={`w-6 h-6 ${scrolled ? 'text-gray-800' : 'text-white'}`} />
+              <Menu className={`w-6 h-6 ${solid ? 'text-gray-800' : 'text-white'}`} />
             )}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <motion.nav
+            id="menu-movil"
+            aria-label="Principal"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-white border-t shadow-lg overflow-hidden"
           >
             <div className="px-4 py-4 space-y-1">
-              {navLinks?.map?.((link: any) => (
-                <button
-                  key={link?.href}
-                  onClick={() => handleNavClick(link?.href)}
-                  className="block w-full text-left px-4 py-3 text-gray-700 hover:text-[#0097A7] hover:bg-[#0097A7]/5 rounded-lg transition-colors font-medium"
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block px-4 py-3 text-gray-700 hover:text-brand-dark hover:bg-brand/5 rounded-lg transition-colors font-medium"
                 >
-                  {link?.label}
-                </button>
-              )) ?? []}
-              <button
-                onClick={() => handleNavClick('#contacto')}
-                className="w-full mt-2 px-5 py-3 bg-[#0097A7] text-white font-semibold rounded-lg hover:bg-[#00838F] transition-colors"
+                  {link.label}
+                </a>
+              ))}
+              <a
+                href="#contacto"
+                onClick={() => setMobileOpen(false)}
+                className="block text-center mt-2 px-5 py-3 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors"
               >
                 Solicitar cotización
-              </button>
+              </a>
             </div>
-          </motion.div>
+          </motion.nav>
         )}
       </AnimatePresence>
     </header>

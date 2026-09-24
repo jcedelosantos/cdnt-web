@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustración de cámara de seguridad vigilando un área">
+<title>Ilustración de cámara de seguridad vigilando un área</title>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d2137"/><stop offset="1" stop-color="#0a1628"/></linearGradient>
+<radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#0097A7" stop-opacity=".45"/><stop offset="1" stop-color="#0097A7" stop-opacity="0"/></radialGradient>
+<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#4DD0E1" fill-opacity=".18"/></pattern>
+<linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16334d"/><stop offset="1" stop-color="#0f2638"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="url(#bg)"/>
+<rect width="800" height="500" fill="url(#dots)"/>
+<ellipse cx="400" cy="250" rx="300" ry="210" fill="url(#glow)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M560 150 L600 150 L600 330" stroke="#4DD0E1" stroke-width="3"/><rect x="585" y="320" width="30" height="12" rx="3" fill="url(#panel)" stroke="#4DD0E1" stroke-width="3"/><path d="M560 150 L540 175" stroke="#4DD0E1" stroke-width="3"/><g transform="rotate(18 430 195)"><rect x="300" y="165" width="250" height="70" rx="14" fill="url(#panel)" stroke="#4DD0E1" stroke-width="3"/><rect x="270" y="175" width="40" height="50" rx="8" fill="#0a1628" stroke="#4DD0E1" stroke-width="3"/><circle cx="290" cy="200" r="13" fill="#0097A7" fill-opacity=".5" stroke="#E6FBFF" stroke-width="3"/><circle cx="290" cy="200" r="5" fill="#E6FBFF" stroke="none"/><circle cx="520" cy="185" r="5" fill="#ff5a5a" stroke="none"/><path d="M330 150 L520 150" stroke="#4DD0E1" stroke-width="3"/></g><path d="M275 240 L200 360 L360 360 Z" fill="#4DD0E1" fill-opacity=".08" stroke="#4DD0E1" stroke-opacity=".4" stroke-width="2" stroke-dasharray="4 8"/><path d="M210 350 C 250 330, 300 335, 350 350" stroke="#4DD0E1" stroke-width="2" stroke-opacity=".6"/>
+</g>
+</svg>

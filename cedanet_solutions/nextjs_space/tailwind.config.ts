@@ -25,6 +25,21 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        brand: {
+          DEFAULT: '#0097A7',
+          dark: '#00838F',
+          light: '#4DD0E1',
+          50: '#f0f9fa',
+        },
+        navy: {
+          DEFAULT: '#0a1628',
+          800: '#0d2137',
+          700: '#0a2a3a',
+        },
+        whatsapp: {
+          DEFAULT: '#25D366',
+          dark: '#1EBE57',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

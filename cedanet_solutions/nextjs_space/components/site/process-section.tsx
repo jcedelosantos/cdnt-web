@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { SectionHeader } from './section-header'
 import { Search, PenTool, Settings, FileText, HeadphonesIcon } from 'lucide-react'
 
 const steps = [
@@ -16,45 +17,31 @@ export function ProcessSection() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
-    <section id="proceso" className="py-20 md:py-28 bg-gray-50" ref={ref}>
+    <section id="proceso" className="py-20 md:py-28 bg-gray-50 scroll-mt-16" ref={ref}>
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="text-[#0097A7] text-sm font-semibold uppercase tracking-wider">Cómo trabajamos</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mt-3">
-            Nuestro proceso
-          </h2>
-        </motion.div>
+        <SectionHeader eyebrow="Cómo trabajamos" title="Nuestro proceso" inView={inView} />
 
         <div className="relative">
-          {/* Timeline line - desktop */}
-          <div className="hidden lg:block absolute top-[52px] left-0 right-0 h-0.5 bg-[#0097A7]/20" />
+          <div className="hidden lg:block absolute top-9 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-brand/10 via-brand/40 to-brand/10" aria-hidden="true" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4">
-            {steps?.map?.((step: any, i: number) => {
-              const Icon = step?.icon
-              return (
-                <motion.div
-                  key={step?.number ?? i}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: i * 0.12 }}
-                  className="relative text-center"
-                >
-                  <div className="relative z-10 w-[72px] h-[72px] mx-auto bg-white border-2 border-[#0097A7]/20 rounded-full flex items-center justify-center mb-5 shadow-sm">
-                    {Icon && <Icon className="w-7 h-7 text-[#0097A7]" />}
-                  </div>
-                  <span className="text-[#0097A7] font-mono text-xs font-bold">{step?.number}</span>
-                  <h3 className="font-display text-base font-semibold text-gray-900 mt-1 mb-2">{step?.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{step?.desc}</p>
-                </motion.div>
-              )
-            }) ?? []}
-          </div>
+          <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4">
+            {steps.map(({ icon: Icon, number, title, desc }, i) => (
+              <motion.li
+                key={number}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="relative text-center"
+              >
+                <div className="relative z-10 w-[72px] h-[72px] mx-auto bg-white border-2 border-brand/30 rounded-2xl rotate-45 flex items-center justify-center mb-6 shadow-sm">
+                  <Icon className="w-7 h-7 text-brand-dark -rotate-45" aria-hidden="true" />
+                </div>
+                <span className="text-brand-dark font-mono text-xs font-bold">Paso {number}</span>
+                <h3 className="font-display text-base font-semibold text-gray-900 mt-1 mb-2">{title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
+              </motion.li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>
