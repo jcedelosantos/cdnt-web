@@ -30,6 +30,7 @@ export function ContactSection() {
     email: '',
     service: '',
     message: '',
+    website: '',
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -53,7 +54,7 @@ export function ContactSection() {
       const data = await res?.json?.()
       if (data?.success) {
         toast.success('¡Mensaje enviado correctamente! Nos pondremos en contacto pronto.')
-        setForm({ name: '', company: '', phone: '', email: '', service: '', message: '' })
+        setForm({ name: '', company: '', phone: '', email: '', service: '', message: '', website: '' })
       } else {
         toast.error(data?.message ?? 'Error al enviar el mensaje.')
       }
@@ -89,12 +90,27 @@ export function ContactSection() {
             className="lg:col-span-3"
           >
             <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Campo trampa anti-spam: oculto para personas, los bots lo rellenan */}
+              <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+                <label>
+                  No completar este campo
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form?.website ?? ''}
+                    onChange={handleChange}
+                  />
+                </label>
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Nombre *</label>
                   <input
                     type="text"
                     name="name"
+                    maxLength={100}
                     value={form?.name ?? ''}
                     onChange={handleChange}
                     required
@@ -107,6 +123,7 @@ export function ContactSection() {
                   <input
                     type="text"
                     name="company"
+                    maxLength={150}
                     value={form?.company ?? ''}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0097A7]/30 focus:border-[#0097A7] transition-all"
@@ -120,6 +137,7 @@ export function ContactSection() {
                   <input
                     type="tel"
                     name="phone"
+                    maxLength={30}
                     value={form?.phone ?? ''}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0097A7]/30 focus:border-[#0097A7] transition-all"
@@ -131,6 +149,7 @@ export function ContactSection() {
                   <input
                     type="email"
                     name="email"
+                    maxLength={150}
                     value={form?.email ?? ''}
                     onChange={handleChange}
                     required
@@ -157,6 +176,7 @@ export function ContactSection() {
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Mensaje *</label>
                 <textarea
                   name="message"
+                  maxLength={5000}
                   value={form?.message ?? ''}
                   onChange={handleChange}
                   required
