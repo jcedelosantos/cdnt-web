@@ -1,0 +1,24 @@
+# Secretos y variables de entorno
+.env
+.env.*
+!.env.example
+
+# Archivos internos de la plataforma Abacus (no publicar)
+.abacus.donotdelete
+
+# Dependencias y builds
+node_modules/
+.next/
+out/
+build/
+.yarn/
+*.tsbuildinfo
+next-env.d.ts
+
+# Logs y sistema
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+.vercel
+__pycache__/
