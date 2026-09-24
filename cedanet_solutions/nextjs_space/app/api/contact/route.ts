@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
+import nodemailer from 'nodemailer'
 import { prisma } from '@/lib/db'
 
 export const dynamic = 'force-dynamic'
@@ -32,6 +33,13 @@ function isRateLimited(ip: string) {
   }
   return recent.length > RATE_LIMIT
 }
+
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: Number(process.env.SMTP_PORT || 465),
+  secure: Number(process.env.SMTP_PORT || 465) === 465,
+  auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+})
 
 function escapeHtml(value: string) {
   return value
@@ -79,12 +87,6 @@ export async function POST(request: Request) {
       data: { name, company, phone, email, service, message },
     })
 
-    const appUrl = process.env.NEXTAUTH_URL || ''
-    let appName = 'Cedanet Solutions'
-    try {
-      appName = appUrl ? new URL(appUrl).hostname.split('.')[0] || 'Cedanet Solutions' : 'Cedanet Solutions'
-    } catch { appName = 'Cedanet Solutions' }
-
     const safe = {
       name: escapeHtml(name),
       company: escapeHtml(company) || 'No especificada',
@@ -115,27 +117,15 @@ export async function POST(request: Request) {
     `
 
     try {
-      const senderEmail = appUrl ? `noreply@${new URL(appUrl).hostname}` : 'noreply@cedanet.net'
-      const res = await fetch('https://apps.abacus.ai/api/sendNotificationEmail', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          deployment_token: process.env.ABACUSAI_API_KEY,
-          app_id: process.env.WEB_APP_ID,
-          notification_id: process.env.NOTIF_ID_FORMULARIO_DE_CONTACTO,
-          subject: stripLineBreaks(`Nuevo contacto: ${name} - ${service || 'General'}`).slice(0, 200),
-          body: htmlBody,
-          is_html: true,
-          recipient_email: 'javis.cedano@cedanet.net',
-          reply_to: email,
-          sender_email: senderEmail,
-          sender_alias: appName,
-        }),
+      await transporter.sendMail({
+        from: `"Cedanet Solutions" <${process.env.SMTP_USER}>`,
+        to: process.env.CONTACT_TO || 'javis.cedano@cedanet.net',
+        replyTo: email,
+        subject: stripLineBreaks(`Nuevo contacto: ${name} - ${service || 'General'}`).slice(0, 200),
+        html: htmlBody,
       })
-      if (!res.ok) {
-        console.error('Error enviando email: HTTP', res.status, await res.text().catch(() => ''))
-      }
     } catch (emailError: unknown) {
+      // El mensaje ya quedó guardado en la base; solo se registra el fallo del correo
       console.error('Error enviando email:', emailError instanceof Error ? emailError.message : emailError)
     }
 

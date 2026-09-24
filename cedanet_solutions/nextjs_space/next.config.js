@@ -1,14 +1,13 @@
 const path = require('path');
 
 // Next.js 14 inyecta scripts y estilos inline, por eso 'unsafe-inline'.
-// apps.abacus.ai se permite porque layout.tsx carga su librería.
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://apps.abacus.ai",
+  "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  "connect-src 'self' https://apps.abacus.ai",
+  "connect-src 'self'",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

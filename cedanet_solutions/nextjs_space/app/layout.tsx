@@ -5,14 +5,12 @@ import { Toaster } from '@/components/ui/sonner'
 import { ChunkLoadErrorHandler } from '@/components/chunk-load-error-handler'
 import type { Metadata } from 'next'
 
-export const dynamic = 'force-dynamic'
-
 const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' })
 const jakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-display' })
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 export async function generateMetadata(): Promise<Metadata> {
-  const siteUrl = process.env.NEXTAUTH_URL || 'https://cedanet.net'
+  const siteUrl = process.env.SITE_URL || 'https://cedanet.net'
   return {
     metadataBase: new URL(siteUrl),
     title: 'Cedanet Solutions | Soluciones Tecnológicas Integrales',
@@ -38,9 +36,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <head>
-        <script src="https://apps.abacus.ai/chatllm/appllm-lib.js" />
-      </head>
       <body className={`${dmSans.variable} ${jakartaSans.variable} ${jetbrainsMono.variable} font-sans`}>
         <ThemeProvider
           attribute="class"
