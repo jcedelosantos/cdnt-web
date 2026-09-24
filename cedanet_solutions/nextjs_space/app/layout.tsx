@@ -48,7 +48,7 @@ const jsonLd = {
   email: 'javis.cedano@cedanet.net',
   areaServed: { '@type': 'Country', name: 'República Dominicana' },
   address: { '@type': 'PostalAddress', addressCountry: 'DO' },
-  sameAs: ['https://instagram.com/cedanetrd'],
+  sameAs: ['https://instagram.com/cedanetsrd'],
 }
 
 export default function RootLayout({

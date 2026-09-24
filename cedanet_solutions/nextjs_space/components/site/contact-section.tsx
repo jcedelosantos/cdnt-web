@@ -227,24 +227,24 @@ export function ContactSection() {
                     <p className="font-medium break-all">javis.cedano@cedanet.net</p>
                   </div>
                 </a>
-                <a href="https://instagram.com/cedanetrd" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-700 hover:text-brand-dark transition-colors">
+                <a href="https://instagram.com/cedanetsrd" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-700 hover:text-brand-dark transition-colors">
                   <div className="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Instagram className="w-4 h-4 text-brand" />
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Instagram</p>
-                    <p className="font-medium">@cedanetrd</p>
+                    <p className="font-medium">@cedanetsrd</p>
                   </div>
                 </a>
-                <div className="flex items-center gap-3 text-brand">
+                <a href="https://www.cedanet.net" className="flex items-center gap-3 text-gray-700 hover:text-brand-dark transition-colors">
                   <div className="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Globe className="w-4 h-4 text-brand" />
+                    <Globe className="w-4 h-4 text-brand" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Web</p>
-                    <p className="font-medium text-gray-700">cedanet.net</p>
+                    <p className="font-medium">www.cedanet.net</p>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
 

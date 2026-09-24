@@ -77,12 +77,12 @@ export function Footer() {
               <a href="mailto:javis.cedano@cedanet.net" className="flex items-center gap-2 text-sm hover:text-brand-light transition-colors">
                 <Mail className="w-4 h-4" aria-hidden="true" /> <span className="break-all">javis.cedano@cedanet.net</span>
               </a>
-              <a href="https://instagram.com/cedanetrd" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-brand-light transition-colors">
-                <Instagram className="w-4 h-4" aria-hidden="true" /> @cedanetrd
+              <a href="https://instagram.com/cedanetsrd" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm hover:text-brand-light transition-colors">
+                <Instagram className="w-4 h-4" aria-hidden="true" /> @cedanetsrd
               </a>
-              <span className="flex items-center gap-2 text-sm text-brand-light">
-                <Globe className="w-4 h-4" aria-hidden="true" /> cedanet.net
-              </span>
+              <a href="https://www.cedanet.net" className="flex items-center gap-2 text-sm text-brand-light hover:text-white transition-colors">
+                <Globe className="w-4 h-4" aria-hidden="true" /> www.cedanet.net
+              </a>
             </div>
           </div>
         </div>
