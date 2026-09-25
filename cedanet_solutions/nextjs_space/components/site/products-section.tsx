@@ -17,7 +17,9 @@ import { SectionHeader } from './section-header'
 const products = [
   {
     name: 'INTEG',
-    tagline: 'Infraestructura Tecnológica de Gestión de Eventos',
+    tagline: 'Gestión de eventos con QR',
+    sector: 'Eventos',
+    anillo: 'ring-indigo-200 bg-indigo-50',
     desc: 'Vende y valida entradas, controla el acceso desde varias puertas a la vez y mira las ventas y la asistencia en tiempo real.',
     features: ['Entrada con QR al instante', 'Check-in simultáneo en varias puertas', 'Reportes de venta y asistencia'],
     limite: '',
@@ -27,6 +29,8 @@ const products = [
   {
     name: 'Hey! Rest',
     tagline: 'Atención en mesa, en tiempo real',
+    sector: 'Restaurantes',
+    anillo: 'ring-amber-200 bg-amber-50',
     desc: 'El comensal escanea el QR de su mesa y pide desde ahí. El personal lo ve en un tablero en vivo, con tiempos objetivo y reportería.',
     features: ['Pedidos de atención desde la mesa', 'Tablero en vivo para el personal', 'Encuesta de satisfacción'],
     limite: 'Complementa el punto de venta y al personal de servicio; no los sustituye.',
@@ -36,6 +40,8 @@ const products = [
   {
     name: 'Hey! Med',
     tagline: 'Atención al paciente, medida',
+    sector: 'Centros de salud',
+    anillo: 'ring-emerald-200 bg-emerald-50',
     desc: 'Desde la habitación, el paciente o su acompañante solicita servicios de hotelería, limpieza, mantenimiento o cafetería, y el personal los atiende desde un tablero.',
     features: ['Solicitudes no clínicas por QR', 'Tablero por departamento', 'Tiempos de respuesta medidos'],
     limite: 'Uso exclusivamente no clínico. No sustituye el llamado de enfermería ni ningún sistema de alerta médica.',
@@ -58,7 +64,7 @@ export function ProductsSection() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {products.map(({ name, tagline, desc, features, limite, href, logo }, i) => (
+          {products.map(({ name, tagline, sector, anillo, desc, features, limite, href, logo }, i) => (
             <motion.article
               key={name}
               initial={{ opacity: 0, y: 30 }}
@@ -67,8 +73,13 @@ export function ProductsSection() {
               className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-200/70 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand/30 transition-all duration-300"
             >
               <div className="flex-1 p-6">
-                <div className="relative w-14 h-14 mb-4">
-                  <Image src={logo} alt="" fill sizes="56px" className="object-contain rounded-xl" />
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className={`relative w-16 h-16 rounded-2xl p-1.5 ring-2 ${anillo}`}>
+                    <div className="relative w-full h-full">
+                      <Image src={logo} alt="" fill sizes="56px" className="object-contain rounded-xl" />
+                    </div>
+                  </div>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">{sector}</span>
                 </div>
                 <h3 className="font-display text-xl font-bold text-gray-900">{name}</h3>
                 <p className="text-brand-dark text-sm font-semibold mt-1">{tagline}</p>
