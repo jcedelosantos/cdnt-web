@@ -12,7 +12,7 @@ const todosLosEnlaces = [
   { label: 'Nosotros', href: '/#nosotros' },
   { label: 'Proyectos', href: '/#proyectos' },
   { label: 'Proceso', href: '/#proceso' },
-  { label: 'Estimar CCTV', href: '/estimador' },
+  { label: 'Estimar precio', href: '/estimador' },
   { label: 'Contacto', href: '/#contacto' },
 ]
 const navLinks = todosLosEnlaces.filter((l) => estimadorActivo || l.href !== '/estimador')

@@ -37,7 +37,7 @@ export function CtaSection() {
             href="/estimador"
             className="mt-4 sm:mt-0 sm:ml-4 inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold text-lg rounded-lg border border-white/20 hover:bg-white/20 transition-all"
           >
-            Estimar CCTV en línea
+            Estimar precio en línea
           </a>)}
         </motion.div>
       </div>

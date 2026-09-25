@@ -6,6 +6,7 @@ import { useInView } from 'react-intersection-observer'
 import { Send, MapPin, Phone, Mail, MessageCircle, Instagram, Globe } from 'lucide-react'
 import { toast } from 'sonner'
 import { SectionHeader } from './section-header'
+import { estimadorActivo } from '@/lib/features'
 
 const serviceOptions = [
   'Redes e infraestructura',
@@ -83,6 +84,18 @@ export function ContactSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-3"
           >
+            {estimadorActivo && (
+              <a
+                href="/estimador"
+                className="mb-6 flex items-center justify-between gap-4 rounded-2xl border border-brand/20 bg-brand-50 p-4 hover:border-brand/50 transition-colors"
+              >
+                <span>
+                  <span className="block font-semibold text-gray-900">¿Quieres un precio rápido?</span>
+                  <span className="block text-sm text-gray-600">Usa el estimador en línea y ve un rango al instante.</span>
+                </span>
+                <span className="flex-shrink-0 px-4 py-2 rounded-lg bg-brand text-white text-sm font-semibold">Estimar precio</span>
+              </a>
+            )}
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Campo trampa anti-spam: oculto para personas, los bots lo rellenan */}
               <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
