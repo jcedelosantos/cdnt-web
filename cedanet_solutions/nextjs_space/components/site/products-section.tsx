@@ -34,7 +34,7 @@ const products = [
     desc: 'El comensal escanea el QR de su mesa y pide desde ahí. El personal lo ve en un tablero en vivo, con tiempos objetivo y reportería.',
     features: ['Pedidos de atención desde la mesa', 'Tablero en vivo para el personal', 'Encuesta de satisfacción'],
     limite: 'Complementa el punto de venta y al personal de servicio.',
-    href: 'https://integ.cedanet.net/hey-demo',
+    href: 'https://integ.cedanet.net/hey-rest',
     logo: '/productos/hey-rest.png',
   },
   {

@@ -53,7 +53,7 @@ const jsonLd = {
   // solamente los revende (ver la sección "Nuestro software" en components/site/products-section.tsx).
   makesOffer: [
     { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'INTEG', applicationCategory: 'BusinessApplication', url: 'https://integ.cedanet.net/site-web' } },
-    { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'Hey! Rest', applicationCategory: 'BusinessApplication', url: 'https://integ.cedanet.net/hey-demo' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'Hey! Rest', applicationCategory: 'BusinessApplication', url: 'https://integ.cedanet.net/hey-rest' } },
     { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'Hey! Med', applicationCategory: 'BusinessApplication', url: 'https://integ.cedanet.net/hey-med' } },
   ],
 }
