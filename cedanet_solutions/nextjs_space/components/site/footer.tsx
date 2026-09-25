@@ -6,6 +6,7 @@ import { Phone, Mail, Instagram, Globe } from 'lucide-react'
 const quickLinks = [
   { label: 'Inicio', href: '/#inicio' },
   { label: 'Servicios', href: '/#servicios' },
+  { label: 'Productos', href: '/#productos' },
   { label: 'Nosotros', href: '/#nosotros' },
   { label: 'Contacto', href: '/#contacto' },
 ]

@@ -2,6 +2,7 @@ import { Header } from '@/components/site/header'
 import { HeroSection } from '@/components/site/hero-section'
 import { AboutSection } from '@/components/site/about-section'
 import { ServicesSection } from '@/components/site/services-section'
+import { ProductsSection } from '@/components/site/products-section'
 import { WhyUsSection } from '@/components/site/why-us-section'
 import { ProjectsSection } from '@/components/site/projects-section'
 import { ProcessSection } from '@/components/site/process-section'
@@ -17,6 +18,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <ServicesSection />
+      <ProductsSection />
       <WhyUsSection />
       <ProjectsSection />
       <ProcessSection />

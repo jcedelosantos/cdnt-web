@@ -15,9 +15,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(siteUrl),
     title: 'Cedanet Solutions | Soluciones Tecnológicas Integrales',
-    description: 'Diseñamos, implementamos y administramos infraestructuras tecnológicas seguras, eficientes y escalables para redes, seguridad, comunicaciones, CCTV, soporte técnico y automatización empresarial.',
+    description: 'Diseñamos, implementamos y administramos infraestructuras tecnológicas seguras, eficientes y escalables para redes, seguridad, comunicaciones, CCTV, soporte técnico y automatización empresarial. Desarrollamos además nuestro propio software: INTEG, Hey! Rest y Hey! Med.',
     alternates: { canonical: '/' },
-    keywords: ['soluciones tecnológicas', 'redes', 'CCTV', 'firewall', 'telefonía IP', 'WiFi empresarial', 'soporte técnico', 'República Dominicana'],
+    keywords: ['soluciones tecnológicas', 'redes', 'CCTV', 'firewall', 'telefonía IP', 'WiFi empresarial', 'soporte técnico', 'República Dominicana', 'INTEG', 'Hey! Rest', 'Hey! Med', 'software de eventos', 'atención en mesa'],
     icons: {
       icon: '/favicon.svg',
       shortcut: '/favicon.svg',
@@ -40,7 +40,7 @@ const jsonLd = {
   '@type': 'LocalBusiness',
   name: 'Cedanet Solutions',
   description:
-    'Soluciones tecnológicas integrales: redes, firewall, CCTV, telefonía IP, WiFi empresarial, soporte técnico, servidores y automatización.',
+    'Soluciones tecnológicas integrales: redes, firewall, CCTV, telefonía IP, WiFi empresarial, soporte técnico, servidores y automatización. Desarrolladores de INTEG, Hey! Rest y Hey! Med.',
   url: siteUrl,
   logo: `${siteUrl}/assets/logo.png`,
   image: `${siteUrl}/og-image.png`,
@@ -49,6 +49,13 @@ const jsonLd = {
   areaServed: { '@type': 'Country', name: 'República Dominicana' },
   address: { '@type': 'PostalAddress', addressCountry: 'DO' },
   sameAs: ['https://instagram.com/cedanetsrd'],
+  // Los productos propios, para que un buscador entienda que esta empresa los desarrolla y no
+  // solamente los revende (ver la sección "Nuestro software" en components/site/products-section.tsx).
+  makesOffer: [
+    { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'INTEG', applicationCategory: 'BusinessApplication', url: 'https://integ.cedanet.net/site-web' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'Hey! Rest', applicationCategory: 'BusinessApplication', url: 'https://integ.cedanet.net/hey-demo' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'Hey! Med', applicationCategory: 'BusinessApplication', url: 'https://integ.cedanet.net/hey-med' } },
+  ],
 }
 
 export default function RootLayout({

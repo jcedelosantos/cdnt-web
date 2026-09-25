@@ -9,6 +9,7 @@ import { estimadorActivo } from '@/lib/features'
 const todosLosEnlaces = [
   { label: 'Inicio', href: '/#inicio' },
   { label: 'Servicios', href: '/#servicios' },
+  { label: 'Productos', href: '/#productos' },
   { label: 'Nosotros', href: '/#nosotros' },
   { label: 'Proyectos', href: '/#proyectos' },
   { label: 'Proceso', href: '/#proceso' },
