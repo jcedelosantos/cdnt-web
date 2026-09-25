@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ArrowRight } from 'lucide-react'
+import { estimadorActivo } from '@/lib/features'
 
 export function CtaSection() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 })
@@ -32,6 +33,12 @@ export function CtaSection() {
             Solicitar evaluación técnica
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
           </a>
+          {estimadorActivo && (<a
+            href="/estimador"
+            className="mt-4 sm:mt-0 sm:ml-4 inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold text-lg rounded-lg border border-white/20 hover:bg-white/20 transition-all"
+          >
+            Estimar CCTV en línea
+          </a>)}
         </motion.div>
       </div>
     </section>

@@ -4,15 +4,18 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { estimadorActivo } from '@/lib/features'
 
-const navLinks = [
-  { label: 'Inicio', href: '#inicio' },
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Nosotros', href: '#nosotros' },
-  { label: 'Proyectos', href: '#proyectos' },
-  { label: 'Proceso', href: '#proceso' },
-  { label: 'Contacto', href: '#contacto' },
+const todosLosEnlaces = [
+  { label: 'Inicio', href: '/#inicio' },
+  { label: 'Servicios', href: '/#servicios' },
+  { label: 'Nosotros', href: '/#nosotros' },
+  { label: 'Proyectos', href: '/#proyectos' },
+  { label: 'Proceso', href: '/#proceso' },
+  { label: 'Estimar CCTV', href: '/estimador' },
+  { label: 'Contacto', href: '/#contacto' },
 ]
+const navLinks = todosLosEnlaces.filter((l) => estimadorActivo || l.href !== '/estimador')
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -41,7 +44,7 @@ export function Header() {
       </a>
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <a href="#inicio" className="flex-shrink-0" aria-label="Cedanet Solutions, ir al inicio">
+          <a href="/#inicio" className="flex-shrink-0" aria-label="Cedanet Solutions, ir al inicio">
             <div className="relative w-[150px] h-[46px] md:w-[180px] md:h-[56px]">
               <Image
                 src="/assets/logo.png"
@@ -69,7 +72,7 @@ export function Header() {
               </a>
             ))}
             <a
-              href="#contacto"
+              href="/#contacto"
               className="ml-3 px-5 py-2.5 bg-brand text-white text-sm font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-md hover:shadow-lg"
             >
               Solicitar cotización
@@ -115,7 +118,7 @@ export function Header() {
                 </a>
               ))}
               <a
-                href="#contacto"
+                href="/#contacto"
                 onClick={() => setMobileOpen(false)}
                 className="block text-center mt-2 px-5 py-3 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors"
               >

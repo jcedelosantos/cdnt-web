@@ -4,10 +4,10 @@ import Image from 'next/image'
 import { Phone, Mail, Instagram, Globe } from 'lucide-react'
 
 const quickLinks = [
-  { label: 'Inicio', href: '#inicio' },
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Nosotros', href: '#nosotros' },
-  { label: 'Contacto', href: '#contacto' },
+  { label: 'Inicio', href: '/#inicio' },
+  { label: 'Servicios', href: '/#servicios' },
+  { label: 'Nosotros', href: '/#nosotros' },
+  { label: 'Contacto', href: '/#contacto' },
 ]
 
 const mainServices = [
@@ -61,7 +61,7 @@ export function Footer() {
             <ul className="space-y-2.5">
               {mainServices?.map?.((svc: string) => (
                 <li key={svc}>
-                  <a href="#servicios" className="text-sm hover:text-brand-light transition-colors">{svc}</a>
+                  <a href="/#servicios" className="text-sm hover:text-brand-light transition-colors">{svc}</a>
                 </li>
               ))}
             </ul>

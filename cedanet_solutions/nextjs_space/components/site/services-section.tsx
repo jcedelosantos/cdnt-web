@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
 import { SectionHeader } from './section-header'
+import { estimadorActivo } from '@/lib/features'
 import {
   Network, Shield, Camera, Phone, Wifi, Wrench, Server, Bot
 } from 'lucide-react'
@@ -72,7 +73,9 @@ export function ServicesSection() {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map(({ icon: Icon, title, desc, image }, i) => (
+          {services.map(({ icon, title, desc, image }, i) => {
+            const Icon = icon
+            return (
             <motion.article
               key={title}
               initial={{ opacity: 0, y: 30 }}
@@ -96,10 +99,16 @@ export function ServicesSection() {
               <div className="flex-1 p-5">
                 <h3 className="font-display text-base font-semibold text-gray-900 mb-2">{title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
+                {estimadorActivo && icon === Camera && (
+                  <a href="/estimador" className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-dark hover:underline">
+                    Calcular precio en línea <span aria-hidden="true">→</span>
+                  </a>
+                )}
               </div>
               <div className="h-1 w-0 bg-gradient-to-r from-brand to-brand-light group-hover:w-full transition-all duration-500" aria-hidden="true" />
             </motion.article>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
