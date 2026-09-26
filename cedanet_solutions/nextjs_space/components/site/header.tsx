@@ -6,14 +6,14 @@ import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { estimadorActivo } from '@/lib/features'
 
-const todosLosEnlaces = [
+const todosLosEnlaces: { label: string; href: string; nuevo?: boolean }[] = [
   { label: 'Inicio', href: '/#inicio' },
   { label: 'Servicios', href: '/#servicios' },
-  { label: 'Productos', href: '/#productos' },
+  { label: 'Productos', href: '/#productos', nuevo: true },
   { label: 'Nosotros', href: '/#nosotros' },
   { label: 'Proyectos', href: '/#proyectos' },
   { label: 'Proceso', href: '/#proceso' },
-  { label: 'Estimar precio', href: '/estimador' },
+  { label: 'Estimar precio', href: '/estimador', nuevo: true },
   { label: 'Contacto', href: '/#contacto' },
 ]
 const navLinks = todosLosEnlaces.filter((l) => estimadorActivo || l.href !== '/estimador')
@@ -63,13 +63,18 @@ export function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                   solid
                     ? 'text-gray-700 hover:text-brand-dark hover:bg-brand/5'
                     : 'text-white/90 hover:text-white hover:bg-white/10'
                 }`}
               >
                 {link.label}
+                {link.nuevo && (
+                  <span className="absolute -top-1.5 right-0 px-1.5 py-px rounded-full bg-brand text-white text-[10px] font-bold uppercase leading-4 tracking-wide shadow-sm">
+                    Nuevo
+                  </span>
+                )}
               </a>
             ))}
             <a
@@ -113,9 +118,12 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-gray-700 hover:text-brand-dark hover:bg-brand/5 rounded-lg transition-colors font-medium"
+                  className="flex items-center gap-2 px-4 py-3 text-gray-700 hover:text-brand-dark hover:bg-brand/5 rounded-lg transition-colors font-medium"
                 >
                   {link.label}
+                  {link.nuevo && (
+                    <span className="px-2 py-0.5 rounded-full bg-brand text-white text-[10px] font-bold uppercase tracking-wide">Nuevo</span>
+                  )}
                 </a>
               ))}
               <a
