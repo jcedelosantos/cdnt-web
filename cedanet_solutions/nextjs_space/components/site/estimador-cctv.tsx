@@ -25,7 +25,7 @@ const dop = (n: number) => `RD$ ${n.toLocaleString('es-DO', { maximumFractionDig
 const inputClass =
   'w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand transition-all'
 
-export function EstimadorCctv() {
+export function EstimadorCctv({ onElegirArea }: { onElegirArea?: () => void }) {
   const [paso, setPaso] = useState(0)
   const [camaras, setCamaras] = useState(8)
   const [instalacion, setInstalacion] = useState<Instalacion | null>(null)
@@ -231,7 +231,7 @@ export function EstimadorCctv() {
                   </div>
                 </div>
                 <div className="mt-8 flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
-                  <button type="button" onClick={() => setPaso(2)} className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">
+                  <button type="button" onClick={() => setPaso(2)} className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium">
                     <ArrowLeft className="w-4 h-4" aria-hidden="true" /> Atrás
                   </button>
                   <button type="submit" disabled={enviando} className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-md disabled:opacity-50">
@@ -281,18 +281,19 @@ export function EstimadorCctv() {
 
         {paso < 3 && (
           <div className="mt-8 flex justify-between gap-3">
+            {/* En el primer paso, "Atrás" vuelve a la lista de áreas. */}
             <button
               type="button"
-              onClick={() => setPaso((p) => Math.max(0, p - 1))}
-              className={`inline-flex items-center gap-2 px-5 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium ${paso === 0 ? 'invisible' : ''}`}
+              onClick={() => (paso === 0 ? onElegirArea?.() : setPaso((p) => p - 1))}
+              className={`inline-flex items-center gap-2 px-3 sm:px-5 py-3 whitespace-nowrap rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors font-medium ${paso === 0 && !onElegirArea ? 'invisible' : ''}`}
             >
-              <ArrowLeft className="w-4 h-4" aria-hidden="true" /> Atrás
+              <ArrowLeft className="w-4 h-4" aria-hidden="true" /> {paso === 0 ? 'Elegir otra área' : 'Atrás'}
             </button>
             <button
               type="button"
               disabled={!puedeSeguir}
               onClick={() => setPaso((p) => p + 1)}
-              className="inline-flex items-center gap-2 px-7 py-3 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-md disabled:opacity-40 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-2 px-4 sm:px-7 py-3 whitespace-nowrap bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-md disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Siguiente <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </button>

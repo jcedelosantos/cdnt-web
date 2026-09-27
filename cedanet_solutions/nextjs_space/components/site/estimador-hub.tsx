@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowLeft, Bot, Camera, Network, Phone, Server, Shield, Wifi, Wrench } from 'lucide-react'
+import { Bot, Camera, Network, Phone, Server, Shield, Wifi, Wrench } from 'lucide-react'
 import { EstimadorCctv } from './estimador-cctv'
 
 type Area = 'cctv'
@@ -22,18 +22,7 @@ export function EstimadorHub() {
   const [area, setArea] = useState<Area | null>(null)
 
   if (area === 'cctv') {
-    return (
-      <div>
-        <button
-          type="button"
-          onClick={() => setArea(null)}
-          className="mb-4 inline-flex items-center gap-2 text-sm font-medium text-white/90 hover:text-white"
-        >
-          <ArrowLeft className="w-4 h-4" aria-hidden="true" /> Elegir otra área
-        </button>
-        <EstimadorCctv />
-      </div>
-    )
+    return <EstimadorCctv onElegirArea={() => setArea(null)} />
   }
 
   return (
