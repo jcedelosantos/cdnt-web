@@ -4,7 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
 import { ChunkLoadErrorHandler } from '@/components/chunk-load-error-handler'
 import { MotionProvider } from '@/components/site/motion-provider'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' })
 const jakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-display' })
@@ -21,6 +21,12 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: {
       icon: '/favicon.svg',
       shortcut: '/favicon.svg',
+      apple: '/apple-touch-icon.png',
+    },
+    appleWebApp: {
+      capable: true,
+      title: 'Cedanet',
+      statusBarStyle: 'default',
     },
     openGraph: {
       title: 'Cedanet Solutions | Soluciones Tecnológicas Integrales',
@@ -31,6 +37,10 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: 'Cedanet Solutions',
     },
   }
+}
+
+export const viewport: Viewport = {
+  themeColor: '#ffffff',
 }
 
 const siteUrl = process.env.SITE_URL || 'https://www.cedanet.net'
