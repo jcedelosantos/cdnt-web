@@ -7,28 +7,57 @@ import { escapeHtml, sendEmail } from '@/lib/email'
 
 export const dynamic = 'force-dynamic'
 
-const schema = z.object({
-  entrada: z.object({
-    camaras: z.number().int().min(1).max(32),
-    distancia: z.enum(['corta', 'media', 'larga']),
-    instalacion: z.enum(['interior', 'exterior', 'mixta']),
-  }),
-  contacto: z.object({
-    nombre: z.string().trim().min(1).max(100),
-    empresa: z.string().trim().max(150).optional().default(''),
-    telefono: z.string().trim().min(7).max(30),
-    email: z.string().trim().email().max(150).optional().or(z.literal('')).default(''),
-    ubicacion: z.string().trim().max(150).optional().default(''),
-    mensaje: z.string().trim().max(2000).optional().default(''),
-  }),
-  // Campo trampa: los humanos no lo ven, los bots lo rellenan
-  website: z.string().optional().default(''),
+const entradaCctv = z.object({
+  camaras: z.number().int().min(1).max(32),
+  distancia: z.enum(['corta', 'media', 'larga']),
+  instalacion: z.enum(['interior', 'exterior', 'mixta']),
 })
+const entradaTelefonia = z.object({
+  extensiones: z.number().int().min(1).max(48),
+  cableado: z.enum(['existente', 'corta', 'larga']),
+  poe: z.enum(['si', 'no']),
+})
+
+const contacto = z.object({
+  nombre: z.string().trim().min(1).max(100),
+  empresa: z.string().trim().max(150).optional().default(''),
+  telefono: z.string().trim().min(7).max(30),
+  email: z.string().trim().email().max(150).optional().or(z.literal('')).default(''),
+  ubicacion: z.string().trim().max(150).optional().default(''),
+  mensaje: z.string().trim().max(2000).optional().default(''),
+})
+// Campo trampa: los humanos no lo ven, los bots lo rellenan
+const website = z.string().optional().default('')
+
+const schema = z.discriminatedUnion('area', [
+  z.object({ area: z.literal('cctv'), entrada: entradaCctv, contacto, website }),
+  z.object({ area: z.literal('telefonia'), entrada: entradaTelefonia, contacto, website }),
+])
 
 const ETIQUETA = {
   distancia: { corta: 'menos de 20 m', media: '20 a 50 m', larga: 'más de 50 m' },
   instalacion: { interior: 'interior', exterior: 'exterior', mixta: 'interior y exterior' },
+  cableado: { existente: 'usa la red existente', corta: 'cableado nuevo, distancias cortas', larga: 'cableado nuevo, distancias largas' },
+  poe: { si: 'ya tiene switch PoE', no: 'sin switch PoE' },
 } as const
+
+// Resumen, servicio y título del correo según el área
+function describir(d: z.infer<typeof schema>) {
+  if (d.area === 'telefonia') {
+    const e = d.entrada
+    return {
+      servicio: 'Estimador Central telefónica',
+      resumen: `Central telefónica: ${e.extensiones} extensiones, ${ETIQUETA.cableado[e.cableado]}, ${ETIQUETA.poe[e.poe]}`,
+      detalle: `${e.extensiones} extensiones`,
+    }
+  }
+  const e = d.entrada
+  return {
+    servicio: 'Estimador CCTV',
+    resumen: `CCTV: ${e.camaras} cámaras, distancia ${ETIQUETA.distancia[e.distancia]}, instalación ${ETIQUETA.instalacion[e.instalacion]}`,
+    detalle: `${e.camaras} cámaras`,
+  }
+}
 
 const dop = (n: number) => `RD$ ${n.toLocaleString('es-DO', { maximumFractionDigits: 0 })}`
 
@@ -55,17 +84,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, message: 'Demasiadas solicitudes. Intenta de nuevo en unos minutos.' }, { status: 429 })
   }
 
-  const parsed = schema.safeParse(await request.json().catch(() => null))
+  // Sin "area" se asume CCTV (formulario anterior a la central telefónica)
+  const json = await request.json().catch(() => null)
+  const parsed = schema.safeParse(json && typeof json === 'object' && !('area' in json) ? { ...json, area: 'cctv' } : json)
   if (!parsed.success) {
     return NextResponse.json({ ok: false, message: 'Revisa los datos: nombre y teléfono son requeridos.' }, { status: 400 })
   }
-  const { entrada, contacto, website } = parsed.data
+  const { area, entrada, contacto, website } = parsed.data
+  const { servicio, resumen, detalle } = describir(parsed.data)
 
   // Bot: respuesta genérica sin llamar a NetPlanner
   if (website) return NextResponse.json({ ok: true, rango: null })
 
   try {
-    const { ok, status, data } = await llamarNetplanner({ accion: 'solicitar', entrada, contacto })
+    const { ok, status, data } = await llamarNetplanner({ accion: 'solicitar', area, entrada, contacto })
     if (!ok) {
       console.error('[estimador] NetPlanner respondió', status, data)
       return NextResponse.json(
@@ -75,7 +107,6 @@ export async function POST(request: Request) {
     }
     const rango: { minimo: number; maximo: number } = data.rango
 
-    const resumen = `CCTV: ${entrada.camaras} cámaras, distancia ${ETIQUETA.distancia[entrada.distancia]}, instalación ${ETIQUETA.instalacion[entrada.instalacion]}`
     // Copia en la base de la web; si falla, el lead ya quedó en NetPlanner
     await prisma.contactMessage.create({
       data: {
@@ -83,7 +114,7 @@ export async function POST(request: Request) {
         company: contacto.empresa,
         phone: contacto.telefono,
         email: contacto.email,
-        service: 'Estimador CCTV',
+        service: servicio,
         message: [resumen, `Rango mostrado: ${dop(rango.minimo)} – ${dop(rango.maximo)}`, contacto.ubicacion && `Ubicación: ${contacto.ubicacion}`, contacto.mensaje]
           .filter(Boolean)
           .join('\n'),
@@ -96,10 +127,10 @@ export async function POST(request: Request) {
       await sendEmail({
         to: process.env.CONTACT_TO || 'javis.cedano@cedanet.net',
         replyTo: contacto.email || process.env.CONTACT_TO || 'javis.cedano@cedanet.net',
-        subject: `Estimador CCTV: ${contacto.empresa || contacto.nombre} (${entrada.camaras} cámaras)`.slice(0, 200),
+        subject: `${servicio}: ${contacto.empresa || contacto.nombre} (${detalle})`.slice(0, 200),
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px;">
-            <h2 style="color:#0097A7;">Nueva solicitud del estimador de CCTV</h2>
+            <h2 style="color:#0097A7;">Nueva solicitud: ${servicio}</h2>
             ${fila('Nombre', contacto.nombre)}
             ${fila('Empresa', contacto.empresa || 'No especificada')}
             ${fila('Teléfono', contacto.telefono)}
