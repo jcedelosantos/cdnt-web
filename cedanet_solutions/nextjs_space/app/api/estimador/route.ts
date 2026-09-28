@@ -122,6 +122,10 @@ export async function POST(request: Request) {
       )
     }
     const rango: { minimo: number; maximo: number } = data.rango
+    // NetPlanner devuelve el resumen con la cantidad de equipos (APs, etc.) y los materiales, sin precios
+    const resumenFinal: string = typeof data.resumen === 'string' ? data.resumen : resumen
+    const materiales: { nombre: string; cantidad: number; unidad: string }[] = Array.isArray(data.materiales) ? data.materiales : []
+    const listaMateriales = materiales.map((m) => `${m.cantidad} ${m.unidad} · ${m.nombre}`)
 
     // Copia en la base de la web; si falla, el lead ya quedó en NetPlanner
     await prisma.contactMessage.create({
@@ -131,7 +135,13 @@ export async function POST(request: Request) {
         phone: contacto.telefono,
         email: contacto.email,
         service: servicio,
-        message: [resumen, `Rango mostrado: ${dop(rango.minimo)} – ${dop(rango.maximo)}`, contacto.ubicacion && `Ubicación: ${contacto.ubicacion}`, contacto.mensaje]
+        message: [
+          resumenFinal,
+          `Rango mostrado: ${dop(rango.minimo)} – ${dop(rango.maximo)}`,
+          contacto.ubicacion && `Ubicación: ${contacto.ubicacion}`,
+          contacto.mensaje,
+          listaMateriales.length > 0 && `Equipos y materiales estimados:\n${listaMateriales.join('\n')}`,
+        ]
           .filter(Boolean)
           .join('\n'),
       },
@@ -152,9 +162,16 @@ export async function POST(request: Request) {
             ${fila('Teléfono', contacto.telefono)}
             ${fila('Email', contacto.email || 'No proporcionado')}
             ${fila('Ubicación', contacto.ubicacion || 'No especificada')}
-            ${fila('Proyecto', resumen)}
+            ${fila('Proyecto', resumenFinal)}
             ${fila('Rango mostrado', `${dop(rango.minimo)} – ${dop(rango.maximo)}`)}
             ${contacto.mensaje ? fila('Mensaje', contacto.mensaje) : ''}
+            ${
+              listaMateriales.length > 0
+                ? `<p style="margin:16px 0 6px;"><strong>Equipos y materiales estimados:</strong></p><ul style="margin:0;padding-left:20px;">${listaMateriales
+                    .map((l) => `<li>${escapeHtml(l)}</li>`)
+                    .join('')}</ul>`
+                : ''
+            }
             <p style="margin-top:16px;"><a href="${enlace}" style="background:#0097A7;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;">Abrir borrador en NetPlanner</a></p>
           </div>`,
       })
