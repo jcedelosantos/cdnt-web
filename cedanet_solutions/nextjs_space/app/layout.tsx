@@ -45,7 +45,7 @@ const jsonLd = {
   logo: `${siteUrl}/assets/logo.png`,
   image: `${siteUrl}/og-image.png`,
   telephone: '+1-809-627-9180',
-  email: 'javis.cedano@cedanet.net',
+  email: 'admin@cedanet.net',
   areaServed: { '@type': 'Country', name: 'República Dominicana' },
   address: { '@type': 'PostalAddress', addressCountry: 'DO' },
   sameAs: ['https://instagram.com/cedanetsrd'],

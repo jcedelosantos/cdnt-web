@@ -231,13 +231,13 @@ export function ContactSection() {
                     <p className="font-medium">809-627-9180</p>
                   </div>
                 </a>
-                <a href="mailto:javis.cedano@cedanet.net" className="flex items-center gap-3 text-gray-700 hover:text-brand-dark transition-colors">
+                <a href="mailto:admin@cedanet.net" className="flex items-center gap-3 text-gray-700 hover:text-brand-dark transition-colors">
                   <div className="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Mail className="w-4 h-4 text-brand" />
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Email</p>
-                    <p className="font-medium break-all">javis.cedano@cedanet.net</p>
+                    <p className="font-medium break-all">admin@cedanet.net</p>
                   </div>
                 </a>
                 <a href="https://instagram.com/cedanetsrd" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-700 hover:text-brand-dark transition-colors">
