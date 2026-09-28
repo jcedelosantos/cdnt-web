@@ -17,6 +17,11 @@ const entradaTelefonia = z.object({
   cableado: z.enum(['existente', 'corta', 'larga']),
   poe: z.enum(['si', 'no']),
 })
+const entradaWifi = z.object({
+  metros: z.number().int().min(50).max(5000),
+  espacio: z.enum(['abierto', 'paredes', 'nave']),
+  personas: z.enum(['20', '50', '100', '150']),
+})
 
 const contacto = z.object({
   nombre: z.string().trim().min(1).max(100),
@@ -32,6 +37,7 @@ const website = z.string().optional().default('')
 const schema = z.discriminatedUnion('area', [
   z.object({ area: z.literal('cctv'), entrada: entradaCctv, contacto, website }),
   z.object({ area: z.literal('telefonia'), entrada: entradaTelefonia, contacto, website }),
+  z.object({ area: z.literal('wifi'), entrada: entradaWifi, contacto, website }),
 ])
 
 const ETIQUETA = {
@@ -39,10 +45,20 @@ const ETIQUETA = {
   instalacion: { interior: 'interior', exterior: 'exterior', mixta: 'interior y exterior' },
   cableado: { existente: 'usa la red existente', corta: 'cableado nuevo, distancias cortas', larga: 'cableado nuevo, distancias largas' },
   poe: { si: 'ya tiene switch PoE', no: 'sin switch PoE' },
+  espacio: { abierto: 'espacio abierto', paredes: 'oficinas con paredes', nave: 'nave o almacén' },
+  personas: { '20': 'hasta 20 personas', '50': 'hasta 50 personas', '100': 'hasta 100 personas', '150': 'más de 100 personas' },
 } as const
 
 // Resumen, servicio y título del correo según el área
 function describir(d: z.infer<typeof schema>) {
+  if (d.area === 'wifi') {
+    const e = d.entrada
+    return {
+      servicio: 'Estimador WiFi',
+      resumen: `WiFi: ${e.metros} m², ${ETIQUETA.espacio[e.espacio]}, ${ETIQUETA.personas[e.personas]}`,
+      detalle: `${e.metros} m²`,
+    }
+  }
   if (d.area === 'telefonia') {
     const e = d.entrada
     return {

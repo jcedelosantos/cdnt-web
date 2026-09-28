@@ -4,14 +4,15 @@ import { useState } from 'react'
 import { Bot, Camera, Network, Phone, Server, Shield, Wifi, Wrench } from 'lucide-react'
 import { EstimadorCctv } from './estimador-cctv'
 import { EstimadorTelefonia } from './estimador-telefonia'
+import { EstimadorWifi } from './estimador-wifi'
 
-type Area = 'cctv' | 'telefonia'
+type Area = 'cctv' | 'telefonia' | 'wifi'
 
 // Áreas del estimador. Las que aún no tienen tarifa se muestran deshabilitadas.
 const AREAS: { id: string; titulo: string; detalle: string; icon: typeof Camera; activa: boolean }[] = [
   { id: 'cctv', titulo: 'CCTV y videovigilancia', detalle: 'Cámaras IP, grabador y cableado', icon: Camera, activa: true },
   { id: 'redes', titulo: 'Redes e infraestructura', detalle: 'Cableado estructurado y puntos de red', icon: Network, activa: false },
-  { id: 'wifi', titulo: 'WiFi empresarial', detalle: 'Access points y cobertura', icon: Wifi, activa: false },
+  { id: 'wifi', titulo: 'WiFi empresarial', detalle: 'Access points y cobertura', icon: Wifi, activa: true },
   { id: 'firewall', titulo: 'Firewall y seguridad', detalle: 'Seguridad perimetral y VPN', icon: Shield, activa: false },
   { id: 'telefonia', titulo: 'Central telefónica', detalle: 'Central IP, teléfonos y extensiones', icon: Phone, activa: true },
   { id: 'soporte', titulo: 'Soporte técnico', detalle: 'Mantenimiento y asistencia', icon: Wrench, activa: false },
@@ -27,6 +28,9 @@ export function EstimadorHub() {
   }
   if (area === 'telefonia') {
     return <EstimadorTelefonia onElegirArea={() => setArea(null)} />
+  }
+  if (area === 'wifi') {
+    return <EstimadorWifi onElegirArea={() => setArea(null)} />
   }
 
   return (
