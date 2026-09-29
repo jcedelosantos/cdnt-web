@@ -19,7 +19,7 @@ export const opcionClass = (activa: boolean) =>
   }`
 
 // Estado del formulario de contacto y envío a /api/estimador
-export function useSolicitud(area: 'cctv' | 'telefonia' | 'wifi') {
+export function useSolicitud(area: 'cctv' | 'telefonia' | 'wifi' | 'firewall') {
   const [contacto, setContacto] = useState({ nombre: '', empresa: '', telefono: '', email: '', ubicacion: '', mensaje: '' })
   const [website, setWebsite] = useState('')
   const [enviando, setEnviando] = useState(false)
