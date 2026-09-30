@@ -61,7 +61,7 @@ function describir(d: z.infer<typeof schema>) {
     const marca = d.entrada.marca === 'aruba' ? 'Aruba Instant On' : 'Fortinet'
     return {
       servicio: 'Estimador Firewall',
-      resumen: `Firewall ${marca}, ${d.entrada.configuracion === 'avanzada' ? 'configuración avanzada' : 'configuración básica'}`,
+      resumen: `Firewall ${marca}, ${d.entrada.configuracion === 'avanzada' ? 'configuración avanzada (VPN, segmentación de red y políticas de seguridad)' : 'configuración básica'}`,
       detalle: marca,
     }
   }

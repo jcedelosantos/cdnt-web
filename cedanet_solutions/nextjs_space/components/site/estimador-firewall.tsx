@@ -33,7 +33,7 @@ const USUARIOS: { valor: Usuarios; titulo: string }[] = [
 
 const CONFIGURACIONES: { valor: Configuracion; titulo: string; detalle: string; icon: typeof Settings }[] = [
   { valor: 'basica', titulo: 'Básica', detalle: 'Salida a internet, red interna y DHCP', icon: Settings },
-  { valor: 'avanzada', titulo: 'Avanzada', detalle: 'Además VPN para trabajo remoto o sucursales y políticas de filtrado', icon: SlidersHorizontal },
+  { valor: 'avanzada', titulo: 'Avanzada', detalle: 'Además VPN para trabajo remoto o sucursales, segmentación de la red y políticas de seguridad', icon: SlidersHorizontal },
 ]
 
 export function EstimadorFirewall({ onElegirArea }: { onElegirArea?: () => void }) {
