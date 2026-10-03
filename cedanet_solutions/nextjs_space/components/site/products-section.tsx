@@ -38,6 +38,17 @@ const products = [
     logo: '/productos/hey-rest.png',
   },
   {
+    name: 'Hey! Bee',
+    tagline: 'El celular del cliente es su beeper',
+    sector: 'Ferias y comida rápida',
+    anillo: 'ring-brand/40 bg-brand/5',
+    desc: 'El cliente paga en caja, escanea el QR del mostrador y anota el número de su ticket. Cuando la orden está lista, su celular suena y pasa a retirarla.',
+    features: ['Sin beepers físicos que comprar ni reponer', 'Pantalla de órdenes listas para el local', 'Pedidos para llevar desde Instagram'],
+    limite: 'Complementa la caja y el punto de venta.',
+    href: 'https://integ.cedanet.net/hey-bee?src=cedanet',
+    logo: '/productos/hey-rest.png',
+  },
+  {
     name: 'Hey! Med',
     tagline: 'Servicio al paciente, desde la habitación',
     sector: 'Centros de salud',
@@ -63,7 +74,7 @@ export function ProductsSection() {
           inView={inView}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map(({ name, tagline, sector, anillo, desc, features, limite, href, logo }, i) => (
             <motion.article
               key={name}
