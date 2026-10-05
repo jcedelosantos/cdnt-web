@@ -6,13 +6,14 @@ import { EstimadorCctv } from './estimador-cctv'
 import { EstimadorTelefonia } from './estimador-telefonia'
 import { EstimadorWifi } from './estimador-wifi'
 import { EstimadorFirewall } from './estimador-firewall'
+import { EstimadorRedes } from './estimador-redes'
 
-type Area = 'cctv' | 'telefonia' | 'wifi' | 'firewall'
+type Area = 'cctv' | 'telefonia' | 'wifi' | 'firewall' | 'redes'
 
 // Áreas del estimador. Las que aún no tienen tarifa se muestran deshabilitadas.
 const AREAS: { id: string; titulo: string; detalle: string; icon: typeof Camera; activa: boolean }[] = [
   { id: 'cctv', titulo: 'CCTV y videovigilancia', detalle: 'Cámaras IP, grabador y cableado', icon: Camera, activa: true },
-  { id: 'redes', titulo: 'Redes e infraestructura', detalle: 'Cableado estructurado y puntos de red', icon: Network, activa: false },
+  { id: 'redes', titulo: 'Redes e infraestructura', detalle: 'Cableado estructurado y puntos de red', icon: Network, activa: true },
   { id: 'wifi', titulo: 'WiFi empresarial', detalle: 'Access points y cobertura', icon: Wifi, activa: true },
   { id: 'firewall', titulo: 'Firewall y seguridad', detalle: 'Seguridad perimetral y VPN', icon: Shield, activa: true },
   { id: 'telefonia', titulo: 'Central telefónica', detalle: 'Central IP, teléfonos y extensiones', icon: Phone, activa: true },
@@ -35,6 +36,9 @@ export function EstimadorHub() {
   }
   if (area === 'firewall') {
     return <EstimadorFirewall onElegirArea={() => setArea(null)} />
+  }
+  if (area === 'redes') {
+    return <EstimadorRedes onElegirArea={() => setArea(null)} />
   }
 
   return (

@@ -27,6 +27,11 @@ const entradaFirewall = z.object({
   usuarios: z.enum(['25', '75', '150']),
   configuracion: z.enum(['basica', 'avanzada']),
 })
+const entradaRedes = z.object({
+  puntos: z.number().int().min(1).max(96),
+  distancia: z.enum(['corta', 'media', 'larga']),
+  gabinete: z.enum(['si', 'no']),
+})
 
 const contacto = z.object({
   nombre: z.string().trim().min(1).max(100),
@@ -44,6 +49,7 @@ const schema = z.discriminatedUnion('area', [
   z.object({ area: z.literal('telefonia'), entrada: entradaTelefonia, contacto, website }),
   z.object({ area: z.literal('wifi'), entrada: entradaWifi, contacto, website }),
   z.object({ area: z.literal('firewall'), entrada: entradaFirewall, contacto, website }),
+  z.object({ area: z.literal('redes'), entrada: entradaRedes, contacto, website }),
 ])
 
 const ETIQUETA = {
@@ -57,6 +63,14 @@ const ETIQUETA = {
 
 // Resumen, servicio y título del correo según el área
 function describir(d: z.infer<typeof schema>) {
+  if (d.area === 'redes') {
+    const e = d.entrada
+    return {
+      servicio: 'Estimador Redes',
+      resumen: `Redes: ${e.puntos} puntos, distancia ${ETIQUETA.distancia[e.distancia]}, ${e.gabinete === 'si' ? 'ya tiene gabinete' : 'con gabinete nuevo'}`,
+      detalle: `${e.puntos} puntos`,
+    }
+  }
   if (d.area === 'firewall') {
     const marca = d.entrada.marca === 'aruba' ? 'Aruba Instant On' : 'Fortinet'
     return {
