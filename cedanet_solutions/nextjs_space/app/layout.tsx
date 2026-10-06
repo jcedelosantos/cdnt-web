@@ -15,9 +15,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(siteUrl),
     title: 'Cedanet Solutions | Soluciones Tecnológicas Integrales',
-    description: 'Diseñamos, implementamos y administramos infraestructuras tecnológicas seguras, eficientes y escalables para redes, seguridad, comunicaciones, CCTV, soporte técnico y automatización empresarial. Desarrollamos además nuestro propio software: INTEG, Hey! Rest y Hey! Med.',
+    description: 'Diseñamos, implementamos y administramos infraestructuras tecnológicas seguras, eficientes y escalables para redes, seguridad, comunicaciones, CCTV, soporte técnico y automatización empresarial. Desarrollamos además nuestro propio software: INTEG (entradas y control de acceso con QR para eventos), Hey! Rest (menú QR y atención en mesa para restaurantes), Hey! Bee (beeper digital para comida rápida) y Hey! Med.',
     alternates: { canonical: '/' },
-    keywords: ['soluciones tecnológicas', 'redes', 'CCTV', 'firewall', 'telefonía IP', 'WiFi empresarial', 'soporte técnico', 'República Dominicana', 'INTEG', 'Hey! Rest', 'Hey! Med', 'software de eventos', 'atención en mesa'],
+    keywords: ['soluciones tecnológicas', 'redes', 'CCTV', 'firewall', 'telefonía IP', 'WiFi empresarial', 'soporte técnico', 'República Dominicana', 'INTEG', 'Hey! Rest', 'Hey! Bee', 'Hey! Med', 'software de eventos', 'entradas con QR', 'control de acceso QR', 'menú QR', 'atención en mesa', 'beeper digital', 'beeper para restaurante'],
     icons: {
       icon: '/favicon.svg',
       shortcut: '/favicon.svg',
@@ -50,7 +50,7 @@ const jsonLd = {
   '@type': 'LocalBusiness',
   name: 'Cedanet Solutions',
   description:
-    'Soluciones tecnológicas integrales: redes, firewall, CCTV, telefonía IP, WiFi empresarial, soporte técnico, servidores y automatización. Desarrolladores de INTEG, Hey! Rest y Hey! Med.',
+    'Soluciones tecnológicas integrales: redes, firewall, CCTV, telefonía IP, WiFi empresarial, soporte técnico, servidores y automatización. Desarrolladores de INTEG, Hey! Rest, Hey! Bee y Hey! Med.',
   url: siteUrl,
   logo: `${siteUrl}/assets/logo.png`,
   image: `${siteUrl}/og-image.png`,
@@ -64,6 +64,7 @@ const jsonLd = {
   makesOffer: [
     { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'INTEG', applicationCategory: 'BusinessApplication', url: 'https://integ.cedanet.net/site-web' } },
     { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'Hey! Rest', applicationCategory: 'BusinessApplication', url: 'https://integ.cedanet.net/hey-rest' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'Hey! Bee', applicationCategory: 'BusinessApplication', url: 'https://integ.cedanet.net/hey-bee' } },
     { '@type': 'Offer', itemOffered: { '@type': 'SoftwareApplication', name: 'Hey! Med', applicationCategory: 'BusinessApplication', url: 'https://integ.cedanet.net/hey-med' } },
   ],
 }
