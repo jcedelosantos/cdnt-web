@@ -1,0 +1,29 @@
+# Cedanet Solutions
+
+> Empresa de tecnología de República Dominicana. Diseña, instala y administra redes, firewall, CCTV, telefonía IP y WiFi empresarial para negocios, y desarrolla su propio software: INTEG, Hey! Rest, Hey! Bee y Hey! Med. Precios en pesos dominicanos, soporte local en español.
+
+## Servicios
+
+- [Estimador de costos en línea](https://www.cedanet.net/estimador): calcula un rango de precio, con ITBIS, para telefonía IP, WiFi, firewall, redes y otras áreas.
+- Redes e infraestructura (cableado estructurado, racks, switches)
+- Firewall y seguridad perimetral (Fortinet)
+- CCTV y videovigilancia
+- Telefonía IP (Grandstream)
+- WiFi empresarial (Aruba Instant On)
+- Soporte técnico y mantenimiento
+- Servidores y soluciones cloud
+- Automatización tecnológica
+
+## Software propio
+
+- [INTEG](https://integ.cedanet.net/site-web): venta de entradas y control de acceso con QR para eventos. Desde RD$3,500 al mes, o evento suelto sin mensualidad.
+- [Hey! Rest](https://integ.cedanet.net/hey-rest): menú QR y llamado al mesero para restaurantes. RD$2,000 al mes con hasta 25 mesas.
+- [Hey! Bee](https://integ.cedanet.net/hey-bee): beeper digital para food courts y comida rápida; el celular del cliente avisa cuando la orden está lista. RD$1,500 al mes por sucursal.
+- [Hey! Med](https://integ.cedanet.net/hey-med): solicitudes no clínicas del paciente desde la habitación (hotelería, limpieza, mantenimiento, cafetería). RD$4,500 al mes con hasta 20 habitaciones.
+- [Resumen detallado del software](https://integ.cedanet.net/llms.txt)
+
+## Contacto
+
+- WhatsApp: +1 809-627-9180
+- Correo: admin@cedanet.net
+- Instagram: https://instagram.com/cedanetsrd
