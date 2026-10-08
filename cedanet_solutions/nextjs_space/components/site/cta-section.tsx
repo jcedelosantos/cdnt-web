@@ -19,12 +19,12 @@ export function CtaSection() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-6">
-            ¿Necesitas mejorar la infraestructura{' '}
-            <span className="text-brand-light">tecnológica</span> de tu empresa?
+            ¿Listo para que tu negocio{' '}
+            <span className="text-brand-light">rinda más</span>?
           </h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-            En Cedanet Solutions podemos ayudarte a diseñar, implementar y administrar una solución
-            segura, moderna y eficiente.
+            Cuéntanos qué le quita más tiempo o dinero a tu operación y te proponemos cómo
+            resolverlo, con precio claro en pesos.
           </p>
           <a
             href="#contacto"

@@ -3,15 +3,15 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { SectionHeader } from './section-header'
-import { Target, Award, ClipboardCheck, Users, LifeBuoy, Rocket } from 'lucide-react'
+import { Target, Calculator, ClipboardCheck, Users, LifeBuoy, Layers } from 'lucide-react'
 
 const reasons = [
-  { icon: Target, text: 'Soluciones diseñadas según la necesidad real del cliente' },
-  { icon: Award, text: 'Experiencia en redes, seguridad, telefonía, CCTV y soporte' },
-  { icon: ClipboardCheck, text: 'Implementaciones limpias, organizadas y documentadas' },
-  { icon: Users, text: 'Acompañamiento antes, durante y después del proyecto' },
-  { icon: LifeBuoy, text: 'Soporte técnico confiable' },
-  { icon: Rocket, text: 'Enfoque en seguridad, estabilidad y crecimiento' },
+  { icon: Target, text: 'Empezamos por lo que le cuesta tiempo o dinero a tu negocio, no por el equipo' },
+  { icon: Layers, text: 'Red y software de la misma empresa: nadie te dice "eso es del otro proveedor"' },
+  { icon: Calculator, text: 'Precio claro en pesos antes de empezar, con estimador en línea' },
+  { icon: ClipboardCheck, text: 'Todo rotulado y documentado, para que tu operación no dependa de nadie' },
+  { icon: LifeBuoy, text: 'Soporte local en español, con cuota fija si lo prefieres' },
+  { icon: Users, text: 'Te acompañamos antes, durante y después, midiendo resultados' },
 ]
 
 export function WhyUsSection() {
