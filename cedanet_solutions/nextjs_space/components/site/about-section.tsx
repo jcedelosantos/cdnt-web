@@ -9,7 +9,7 @@ const highlights = [
   { icon: Activity, title: 'Más eficiencia', desc: 'Una operación más estable: menos caídas, menos llamadas perdidas y menos tiempo resolviendo problemas.' },
   { icon: Users, title: 'Mejor servicio', desc: 'Tus clientes son atendidos más rápido, con tiempos medidos en tableros en vivo con Hey! Rest, Hey! Bee, Hey! Med e INTEG.' },
   { icon: TrendingUp, title: 'Mejores resultados', desc: 'Más rotación, menos tareas repetitivas y menos equipos que reponer. La tecnología como una inversión que se paga.' },
-  { icon: Handshake, title: 'Un solo responsable', desc: 'La misma empresa monta la red y hace el software que corre sobre ella. Respondemos por todo, aquí en RD.' },
+  { icon: Handshake, title: 'Alto nivel de responsabilidad', desc: 'La misma empresa monta la red y hace el software que corre sobre ella. Respondemos por nuestro trabajo, aquí en RD.' },
 ]
 
 export function AboutSection() {
