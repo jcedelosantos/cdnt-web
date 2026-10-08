@@ -50,20 +50,20 @@ export function HeroSection() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand/20 border border-brand/40 rounded-full text-brand-light text-sm font-medium mb-6">
             <span className="w-2 h-2 bg-brand-light rounded-full animate-pulse" aria-hidden="true" />
-            Soluciones tecnológicas integrales
+            Redes, cámaras y software propio en RD
           </div>
 
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
-            Soluciones tecnológicas integrales para empresas{' '}
+            Más eficiencia, mejor servicio,{' '}
             <span className="bg-gradient-to-r from-brand-light to-brand bg-clip-text text-transparent">
-              modernas
+              mejores resultados
             </span>
           </h1>
 
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-10 max-w-xl">
-            En Cedanet Solutions diseñamos, implementamos y administramos infraestructuras
-            tecnológicas seguras, eficientes y escalables para redes, seguridad, comunicaciones,
-            CCTV, soporte técnico y automatización empresarial.
+            Montamos tu red, tus cámaras y tu telefonía, y hacemos el software que pone esa
+            tecnología a trabajar en tu restaurante, tu evento o tu oficina. Un solo responsable,
+            precios claros en pesos y soporte aquí en República Dominicana.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">

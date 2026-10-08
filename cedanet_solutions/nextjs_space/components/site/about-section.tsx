@@ -2,14 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Cpu, Headphones, TrendingUp, ShieldCheck } from 'lucide-react'
+import { Activity, Users, TrendingUp, Handshake } from 'lucide-react'
 import { SectionHeader } from './section-header'
 
 const highlights = [
-  { icon: Cpu, title: 'Implementación profesional', desc: 'Soluciones técnicas planificadas y ejecutadas con los más altos estándares de calidad.' },
-  { icon: Headphones, title: 'Soporte técnico especializado', desc: 'Asistencia técnica dedicada para mantener tu operación funcionando sin interrupciones.' },
-  { icon: TrendingUp, title: 'Soluciones escalables', desc: 'Infraestructuras diseñadas para crecer junto con tu negocio, sin comprometer rendimiento.' },
-  { icon: ShieldCheck, title: 'Seguridad y continuidad', desc: 'Protección integral y planes de continuidad para la estabilidad operativa de tu empresa.' },
+  { icon: Activity, title: 'Más eficiencia', desc: 'Tu operación funciona sin interrupciones: menos caídas, menos llamadas perdidas y menos tiempo resolviendo problemas.' },
+  { icon: Users, title: 'Mejor servicio', desc: 'Tus clientes son atendidos más rápido, con tiempos medidos en tableros en vivo con Hey! Rest, Hey! Bee, Hey! Med e INTEG.' },
+  { icon: TrendingUp, title: 'Mejores resultados', desc: 'Más rotación, menos tareas repetitivas y menos equipos que reponer. La tecnología como una inversión que se paga.' },
+  { icon: Handshake, title: 'Un solo responsable', desc: 'La misma empresa monta la red y hace el software que corre sobre ella. Respondemos por todo, aquí en RD.' },
 ]
 
 export function AboutSection() {
@@ -21,7 +21,7 @@ export function AboutSection() {
         <SectionHeader
           eyebrow="Quiénes somos"
           title="Sobre Cedanet Solutions"
-          description="Cedanet Solutions es una empresa especializada en soluciones tecnológicas integrales, enfocada en ayudar a empresas y organizaciones a optimizar su infraestructura, mejorar la seguridad, garantizar la conectividad y simplificar la operación de sus sistemas tecnológicos. Combinamos experiencia técnica, atención personalizada y soluciones adaptadas a las necesidades reales de cada cliente."
+          description="Trabajamos con restaurantes, comida rápida, clubes y eventos, centros de salud y oficinas que dependen de la tecnología pero no tienen un departamento de TI. Primero entendemos qué le cuesta tiempo o dinero a tu operación; después montamos la red y el software que lo resuelven, con precio claro en pesos antes de empezar."
           inView={inView}
         />
 
