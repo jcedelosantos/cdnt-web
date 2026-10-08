@@ -62,7 +62,7 @@ export function HeroSection() {
 
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-10 max-w-xl">
             Montamos tu red, tus cámaras y tu telefonía, y hacemos el software que pone esa
-            tecnología a trabajar en tu restaurante, tu evento o tu oficina. Un solo responsable,
+            tecnología a trabajar en tu restaurante, tu evento o tu oficina. Alto nivel de responsabilidad,
             precios claros en pesos y soporte aquí en República Dominicana.
           </p>
 
