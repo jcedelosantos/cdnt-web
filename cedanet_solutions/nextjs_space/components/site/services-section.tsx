@@ -31,7 +31,7 @@ const services = [
   {
     icon: Phone,
     title: 'Telefonía IP',
-    desc: 'Que ninguna llamada de un cliente se quede sin contestar, con desvío al celular y grabación. Centrales IP, extensiones, troncales SIP y teléfonos IP.',
+    desc: 'Menos llamadas de clientes sin contestar, con desvío al celular y grabación. Centrales IP, extensiones, troncales SIP y teléfonos IP.',
     image: '/illustrations/telefonia.svg',
   },
   {
