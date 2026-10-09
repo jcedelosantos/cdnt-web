@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL(siteUrl),
     title: 'Cedanet Solutions | Soluciones Tecnológicas Integrales',
-    description: 'Diseñamos, implementamos y administramos infraestructuras tecnológicas seguras, eficientes y escalables para redes, seguridad, comunicaciones, CCTV, soporte técnico y automatización empresarial. Desarrollamos además nuestro propio software: INTEG (entradas y control de acceso con QR para eventos), Hey! Rest (menú QR y atención en mesa para restaurantes), Hey! Bee (beeper digital para comida rápida) y Hey! Med.',
+    description: 'Redes, CCTV, firewall, telefonía IP y WiFi en RD, y software propio: entradas con QR, menú QR para restaurantes y beeper digital.',
     alternates: { canonical: '/' },
     keywords: ['soluciones tecnológicas', 'redes', 'CCTV', 'firewall', 'telefonía IP', 'WiFi empresarial', 'soporte técnico', 'República Dominicana', 'INTEG', 'Hey! Rest', 'Hey! Bee', 'Hey! Med', 'software de eventos', 'entradas con QR', 'control de acceso QR', 'menú QR', 'atención en mesa', 'beeper digital', 'beeper para restaurante'],
     icons: {
