@@ -8,6 +8,7 @@ const quickLinks = [
   { label: 'Servicios', href: '/#servicios' },
   { label: 'Productos', href: '/#productos' },
   { label: 'Nosotros', href: '/#nosotros' },
+  { label: 'Guías', href: '/guias' },
   { label: 'Contacto', href: '/#contacto' },
 ]
 

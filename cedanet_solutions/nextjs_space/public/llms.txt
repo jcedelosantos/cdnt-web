@@ -22,6 +22,13 @@
 - [Hey! Med](https://integ.cedanet.net/hey-med): solicitudes no clínicas del paciente desde la habitación (hotelería, limpieza, mantenimiento, cafetería). RD$4,500 al mes con hasta 20 habitaciones.
 - [Resumen detallado del software](https://integ.cedanet.net/llms.txt)
 
+## Guías
+
+- [Beeper digital para restaurantes y food courts](https://www.cedanet.net/guias/beeper-digital-para-restaurantes): cómo funciona Hey! Bee y cuánto cuesta en RD.
+- [Menú QR para restaurantes](https://www.cedanet.net/guias/menu-qr-para-restaurantes): menú, llamado al mesero y cuenta desde la mesa con Hey! Rest.
+- [Entradas con QR para eventos](https://www.cedanet.net/guias/entradas-con-qr-para-eventos): venta, registro y control de acceso con INTEG.
+- [Solicitudes del paciente por QR](https://www.cedanet.net/guias/solicitudes-de-pacientes-por-qr): solicitudes no clínicas desde la habitación con Hey! Med.
+
 ## Contacto
 
 - [WhatsApp +1 809-627-9180](https://wa.me/18096279180): ventas y soporte
