@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Menu, X } from 'lucide-react'
+import { LogIn, Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { estimadorActivo } from '@/lib/features'
 
@@ -17,6 +17,10 @@ const todosLosEnlaces: { label: string; href: string }[] = [
   { label: 'Contacto', href: '/#contacto' },
 ]
 const navLinks = todosLosEnlaces.filter((l) => estimadorActivo || l.href !== '/estimador')
+
+// Las cuentas (Hey! Rest, Hey! Bee, Hey! Med, INTEG y el panel de ventas) viven en INTEG.
+// Va como enlace discreto para no competir con "Solicitar cotización".
+const urlIngresar = 'https://integ.cedanet.net/login'
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -73,8 +77,19 @@ export function Header() {
               </a>
             ))}
             <a
+              href={urlIngresar}
+              className={`ml-2 border-l inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
+                solid
+                  ? 'border-gray-200 text-gray-600 hover:text-brand-dark'
+                  : 'border-white/30 text-white/80 hover:text-white'
+              }`}
+            >
+              <LogIn className="w-4 h-4" aria-hidden="true" />
+              Ingresar
+            </a>
+            <a
               href="/#contacto"
-              className="ml-3 px-5 py-2.5 bg-brand text-white text-sm font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-md hover:shadow-lg"
+              className="ml-2 px-5 py-2.5 bg-brand text-white text-sm font-semibold rounded-lg hover:bg-brand-dark transition-colors shadow-md hover:shadow-lg"
             >
               Solicitar cotización
             </a>
@@ -118,6 +133,13 @@ export function Header() {
                   {link.label}
                 </a>
               ))}
+              <a
+                href={urlIngresar}
+                className="flex items-center gap-2 px-4 py-3 text-gray-600 hover:text-brand-dark hover:bg-brand/5 rounded-lg transition-colors font-medium"
+              >
+                <LogIn className="w-4 h-4" aria-hidden="true" />
+                Ingresar a mi cuenta
+              </a>
               <a
                 href="/#contacto"
                 onClick={() => setMobileOpen(false)}
