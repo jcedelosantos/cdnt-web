@@ -37,6 +37,7 @@ const nextConfig = {
       heybee: 'https://integ.cedanet.net/hey-bee?src=corto',
       heyrest: 'https://integ.cedanet.net/hey-rest',
       heymed: 'https://integ.cedanet.net/hey-med',
+      heywash: 'https://integ.cedanet.net/hey-wash',
       integ: 'https://integ.cedanet.net/site-web',
     };
     return Object.entries(destinos).flatMap(([corto, destination]) => {
