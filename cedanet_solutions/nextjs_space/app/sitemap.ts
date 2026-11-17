@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...(estimadorActivo
       ? [{ url: `${siteUrl}/estimador`, lastModified: new Date('2026-09-25'), changeFrequency: 'monthly' as const, priority: 0.8 }]
       : []),
+    { url: `${siteUrl}/eventos`, lastModified: new Date('2026-11-17'), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${siteUrl}/guias`, lastModified: new Date('2026-10-15'), changeFrequency: 'monthly', priority: 0.7 },
     ...GUIAS.map((g) => ({ url: `${siteUrl}/guias/${g.slug}`, lastModified: new Date(g.publicada), changeFrequency: 'monthly' as const, priority: 0.7 })),
   ]
