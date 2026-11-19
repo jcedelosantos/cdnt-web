@@ -22,3 +22,6 @@ yarn-error.log*
 .DS_Store
 .vercel
 __pycache__/
+
+# Railway IaC (SDK local de .railway)
+.railway/node_modules
